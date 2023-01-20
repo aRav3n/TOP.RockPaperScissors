@@ -1,5 +1,5 @@
 // Initialize variables
-const possibleThrows = ['rock','paper','scissors'];
+const possibleThrows = ['Rock','Paper','Scissors'];
 let playerScore = 0;
 let computerScore = 0;
 
@@ -14,7 +14,7 @@ function getComputerChoice () {
 function getPlayerChoice () {
     let throwWord = prompt('Would you like to throw rock, paper, or scissors?');
     // Convert player choice to lower case
-    throwWord = throwWord.toLowerCase();
+    throwWord = throwWord.charAt(0).toUpperCase() + throwWord.slice(1).toLowerCase();
 
     // Validate player choice
     if (possibleThrows.includes(throwWord)) {
@@ -28,20 +28,36 @@ function getPlayerChoice () {
 function compareThrows (playerSelection, computerSelection) {
     // Evaluate for tie
     if (playerSelection === computerSelection){
-        return 'Tie game!'
+        return 'Tie';
     }
     // Evaluate for computer win and update score
     else if (computerSelection === 'rock' && playerSelection === 'scissors' || 
             computerSelection === 'paper' && playerSelection === 'rock' ||
             computerSelection === 'scissors' && playerSelection === 'paper') {
-        computerScore++;
-        return 'You lose; ' + computerSelection + ' beats ' + playerSelection + '!';
+        return 'Lose';
     }
     // Evaluate for player win and update score
     else {
-        playerScore++;
-        return 'You win; ' + playerSelection + ' beats ' + computerSelection + '!'
-    }
+        return 'Win';
+    };
 };
 
-// Run 5 rounds of the game
+// Play a round
+function playOneRound () {
+    const computerSelection = getComputerChoice ();
+    const playerSelection = getPlayerChoice ();
+    const result = compareThrows (playerSelection, computerSelection);
+
+    // Update score for winner
+    if (result === 'Win') {
+        playerScore++;
+        return 'You win! ' + playerSelection + ' beats ' + computerSelection + '!';
+    } else if (result === 'Lose') {
+        computerScore++;
+        return 'You lose! ' + computerSelection + ' beats ' + playerSelection + '!';
+    } else {
+        return 'Tie! You both threw ' + computerSelection + '!';
+    };
+};
+
+// Play 5 rounds
