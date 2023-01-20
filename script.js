@@ -1,11 +1,13 @@
+// Initialize result variable
+
 // Get input from user (rock, paper, or scissors)
 let userThrow = prompt("Would you like to throw rock, paper, or scissors?");
 userThrow = userThrow.toLocaleLowerCase();
 
 // Validate the user input
 if (userThrow !== "rock" || userThrow !== "paper" || userThrow !== "scissors"){
-    console.log("That's not a valid throw; please double check your spelling and try again.");
-    return;
+    console.log();
+    result = "You typed " + userThrow + ". That's not a valid throw; please double check your spelling and try again.";
 }
 
 // Use random number generator to generate number 0-2
@@ -20,23 +22,28 @@ if (computerThrow === 0){
     computerThrow = "scissors"
 };
 
-// Initialize variable for who won
-let result = "You won!";
-
-// Compare throws
+// Find the winner
 if (computerThrow === userThrow) {
-    result = "Tie game!";
+    result = "Tie game! You threw " + userThrow + " and the computer threw " + computerThrow + ". Better luck next time!";
 }
 else if (computerThrow === "rock" && userThrow === "scissors") {
-    result = "The computer won. Better luck next time!"
+    result = "The computer won. You threw " + userThrow + " and the computer threw " + computerThrow + ". Better luck next time!";
 }
 else if (computerThrow === "paper" && userThrow === "rock") {
-    result = "The computer won. Better luck next time!"
+    result = "The computer won. You threw " + userThrow + " and the computer threw " + computerThrow + ". Better luck next time!";
 }
 else if (computerThrow === "scissors" && userThrow === "paper") {
-    result = "The computer won. Better luck next time!"
+    result = "The computer won. You threw " + userThrow + " and the computer threw " + computerThrow + ". Better luck next time!";
+}
+else if (computerThrow === "rock" && userThrow === "paper") {
+    result = "You won! You threw " + userThrow + " and the computer threw " + computerThrow + "!";
+}
+else if (computerThrow === "paper" && userThrow === "scissors") {
+    result = "You won! You threw " + userThrow + " and the computer threw " + computerThrow + "!";
+}
+else if (computerThrow === "scissors" && userThrow === "rock") {
+    result = "You won! You threw " + userThrow + " and the computer threw " + computerThrow + "!";
 };
 
 // Output the winner
-console.log(result + " You threw " + userThrow + " and the computer threw " + computerThrow + "!");
-return result;
+console.log(result);
