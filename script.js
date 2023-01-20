@@ -63,3 +63,22 @@ function playOneRound () {
 };
 
 // Play 5 rounds
+function game () {
+    // Verify that both scores are 0
+    playerScore = 0;
+    computerScore = 0;
+
+    // Run 5 games
+    for (let i = 0; i < 5; i++) {
+        playOneRound ();
+    };
+
+    // Compare scores and return the winner
+    if (playerScore > computerScore){
+        return 'You won the 5 game match! Well done!';
+    } else if (computerScore > playerScore) {
+        return 'You lost the 5 game match! Better luck next time!'
+    } else {
+        return '¡Something went terribly wrong!'
+    };
+};
