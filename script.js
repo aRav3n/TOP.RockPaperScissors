@@ -1,5 +1,9 @@
-// Initialize result variable
+// Initialize variables
 let result;
+let userThrow;
+let computerThrow;
+let userScore = 0;
+let computerScore = 0;
 
 function userChoice() {
     // Get input from user (rock, paper, or scissors)
@@ -16,7 +20,7 @@ function userChoice() {
     return userThrow;
 };
 
-function computerChoice (){
+function computerChoice () {
     // Use random number generator to generate number 0-2
     let computerThrow = Math.floor(Math.random() * 3);
 
@@ -34,8 +38,7 @@ function computerChoice (){
 };
 
 // Find the winner
-function playRound (userThrow, computerThrow)
-{
+function playRound (userThrow, computerThrow) {
     if (computerThrow === userThrow) {
         result = "Tie game! You threw " + userThrow + " and the computer threw " + computerThrow + ". Better luck next time!";
     }
