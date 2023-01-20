@@ -47,8 +47,6 @@ function playOneRound () {
     const computerSelection = getComputerChoice ();
     const playerSelection = getPlayerChoice ();
     const result = compareThrows (playerSelection, computerSelection);
-    console.log('player throw: ' + playerSelection);
-    console.log('computer throw: ' + computerSelection);
 
     // Update score for winner
     if (result === 'Win') {
@@ -71,14 +69,16 @@ function game () {
     // Run 5 games
     for (let i = 0; i < 5; i++) {
         playOneRound ();
+        console.log('player score: ' + playerScore);
+        console.log('computer score: ' + computerScore)
     };
 
     // Compare scores and return the winner
     if (playerScore > computerScore){
-        return 'You won the 5 game match! Well done!';
+        return 'You won the match! Well done!';
     } else if (computerScore > playerScore) {
-        return 'You lost the 5 game match! Better luck next time!'
+        return 'You lost the match! Better luck next time!'
     } else {
-        return '¡Something went terribly wrong!'
+        return 'It\'s a tie! Try again!'
     };
 };
