@@ -31,9 +31,9 @@ function compareThrows (playerSelection, computerSelection) {
         return 'Tie';
     }
     // Evaluate for computer win and update score
-    else if (computerSelection === 'rock' && playerSelection === 'scissors' || 
-            computerSelection === 'paper' && playerSelection === 'rock' ||
-            computerSelection === 'scissors' && playerSelection === 'paper') {
+    else if (computerSelection === 'Rock' && playerSelection === 'Scissors' || 
+            computerSelection === 'Paper' && playerSelection === 'Rock' ||
+            computerSelection === 'Scissors' && playerSelection === 'Paper') {
         return 'Lose';
     }
     // Evaluate for player win and update score
@@ -47,6 +47,8 @@ function playOneRound () {
     const computerSelection = getComputerChoice ();
     const playerSelection = getPlayerChoice ();
     const result = compareThrows (playerSelection, computerSelection);
+    console.log('player throw: ' + playerSelection);
+    console.log('computer throw: ' + computerSelection);
 
     // Update score for winner
     if (result === 'Win') {
