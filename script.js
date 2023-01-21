@@ -69,8 +69,6 @@ function game () {
     // Run 5 games
     for (let i = 0; i < 5; i++) {
         playOneRound ();
-        console.log('player score: ' + playerScore);
-        console.log('computer score: ' + computerScore)
     };
 
     // Compare scores and return the winner
