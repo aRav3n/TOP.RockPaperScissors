@@ -2,6 +2,9 @@
 const possibleThrows = ['Rock','Paper','Scissors'];
 let playerScore = 0;
 let computerScore = 0;
+let victoryStatement = 'You win! ' + playerSelection + ' beats ' + computerSelection + '!';
+let defeatStatement = 'You lose! ' + computerSelection + ' beats ' + playerSelection + '!';
+let tieStatement = 'Tie! You both threw ' + computerSelection + '!';
 
 // Get computer choice
 function getComputerChoice () {
@@ -47,16 +50,15 @@ function playOneRound () {
     const computerSelection = getComputerChoice ();
     const playerSelection = getPlayerChoice ();
     const result = compareThrows (playerSelection, computerSelection);
-
     // Update score for winner
     if (result === 'Win') {
         playerScore++;
-        return 'You win! ' + playerSelection + ' beats ' + computerSelection + '!';
+        return victoryStatement;
     } else if (result === 'Lose') {
         computerScore++;
-        return 'You lose! ' + computerSelection + ' beats ' + playerSelection + '!';
+        return defeatStatement;
     } else {
-        return 'Tie! You both threw ' + computerSelection + '!';
+        return tieStatement;
     };
 };
 
