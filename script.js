@@ -10,6 +10,7 @@ const scissorsButton = document.querySelector('#scissors');
 const playerScoreDisplay = document.querySelector('#playerScore');
 const computerScoreDisplay = document.querySelector('#computerScore');
 const lastRoundResult = document.querySelector('#lastRoundResult');
+const winningScore = 5;
 
 function capitalizeFirstLetter (word) {
     let firstChar = word.charAt(0).toUpperCase();
@@ -61,8 +62,8 @@ function playOneRound(playerSelection) {
     } else {
         lastRoundResult.textContent = tieStatement;
     };
-    playerScoreDisplay.textContent = playerScore;
-    computerScoreDisplay.textContent = computerScore;
+    playerScoreDisplay.textContent = playerScore + ' / ' + winningScore;
+    computerScoreDisplay.textContent = computerScore + ' / ' + winningScore;
 };
 
 // Button clicks trigger a round
