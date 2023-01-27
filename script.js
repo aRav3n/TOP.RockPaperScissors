@@ -36,10 +36,12 @@ function compareThrows (playerSelection, computerSelection) {
     else if (computerSelection === 'rock' && playerSelection === 'scissors' || 
             computerSelection === 'paper' && playerSelection === 'rock' ||
             computerSelection === 'scissors' && playerSelection === 'paper') {
+        computerScore++; 
         return 'Lose';
     }
     // Evaluate for player win and update score
     else {
+        playerScore++;
         return 'Win';
     };
 };
@@ -52,18 +54,20 @@ function playOneRound(playerSelection) {
     let defeatStatement = 'Lost that one! ' + capitalizeFirstLetter(computerSelection) + ' beats ' + playerSelection + '!';
     let tieStatement = 'Tie! You both threw ' + computerSelection + '!';
 
-    // Update score
-    if (result === 'Win') {
-        playerScore++;
+    playerScoreDisplay.textContent = playerScore + ' / ' + winningScore;
+    computerScoreDisplay.textContent = computerScore + ' / ' + winningScore;
+
+    if (playerScore >= 5) {
+        lastRoundResult.textContent = 'You won the match! Well done!'
+    } else if (computerScore >= 5) {
+        lastRoundResult.textContent = 'You lost the match! Better luck next time!'
+    } else if (result === 'Win') {
         lastRoundResult.textContent = victoryStatement;
     } else if (result === 'Lose') {
-        computerScore++;
         lastRoundResult.textContent = defeatStatement;
     } else {
         lastRoundResult.textContent = tieStatement;
     };
-    playerScoreDisplay.textContent = playerScore + ' / ' + winningScore;
-    computerScoreDisplay.textContent = computerScore + ' / ' + winningScore;
 };
 
 // Button clicks trigger a round
