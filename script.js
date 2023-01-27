@@ -1,12 +1,12 @@
 // Initialize variables
 const possibleThrows = ['rock','paper','scissors'];
 let playerScore = 0;
-let computerScore = 0;
 
 // Prep html items for use later
 const rockButton = document.querySelector('#rock');
 const paperButton = document.querySelector('#paper');
 const scissorsButton = document.querySelector('#scissors');
+const currentScore = document.querySelector('#currentScore');
 
 // Get computer choice
 function getComputerChoice () {
@@ -41,16 +41,11 @@ function playOneRound(playerSelection) {
     let defeatStatement = 'You lose! ' + computerSelection + ' beats ' + playerSelection + '!';
     let tieStatement = 'Tie! You both threw ' + computerSelection + '!';
 
-    // Update score for winner
+    // Update score
     if (result === 'Win') {
         playerScore++;
-        return victoryStatement;
-    } else if (result === 'Lose') {
-        computerScore++;
-        return defeatStatement;
-    } else {
-        return tieStatement;
     };
+    currentScore.textContent = playerScore;
 };
 
 // Button clicks trigger a round
