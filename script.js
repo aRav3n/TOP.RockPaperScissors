@@ -1,12 +1,14 @@
 // Initialize variables
 const possibleThrows = ['rock','paper','scissors'];
 let playerScore = 0;
+let computerScore = 0;
 
 // Prep html items for use later
 const rockButton = document.querySelector('#rock');
 const paperButton = document.querySelector('#paper');
 const scissorsButton = document.querySelector('#scissors');
 const playerScoreDisplay = document.querySelector('#playerScore');
+const computerScoreDisplay = document.querySelector('#computerScore');
 
 // Get computer choice
 function getComputerChoice () {
@@ -44,8 +46,11 @@ function playOneRound(playerSelection) {
     // Update score
     if (result === 'Win') {
         playerScore++;
+    } else if (result === 'Lose') {
+        computerScore++;
     };
     playerScoreDisplay.textContent = playerScore;
+    computerScoreDisplay.textContent = computerScore;
 };
 
 // Button clicks trigger a round
