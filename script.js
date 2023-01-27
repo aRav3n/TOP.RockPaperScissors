@@ -9,6 +9,14 @@ const paperButton = document.querySelector('#paper');
 const scissorsButton = document.querySelector('#scissors');
 const playerScoreDisplay = document.querySelector('#playerScore');
 const computerScoreDisplay = document.querySelector('#computerScore');
+const lastRoundResult = document.querySelector('#lastRoundResult');
+
+function capitalizeFirstLetter (word) {
+    let firstChar = word.charAt(0).toUpperCase();
+    let remainingLetters = word.substr(1);
+    let capitalizedWord = firstChar + remainingLetters;
+    return capitalizedWord;
+};
 
 // Get computer choice
 function getComputerChoice () {
@@ -39,15 +47,19 @@ function compareThrows (playerSelection, computerSelection) {
 function playOneRound(playerSelection) {
     const computerSelection = getComputerChoice ();
     const result = compareThrows (playerSelection, computerSelection);
-    let victoryStatement = 'You win! ' + playerSelection + ' beats ' + computerSelection + '!';
-    let defeatStatement = 'You lose! ' + computerSelection + ' beats ' + playerSelection + '!';
+    let victoryStatement = 'Nice! ' + capitalizeFirstLetter(playerSelection) + ' beats ' + computerSelection + '!';
+    let defeatStatement = 'Lost that one! ' + capitalizeFirstLetter(computerSelection) + ' beats ' + playerSelection + '!';
     let tieStatement = 'Tie! You both threw ' + computerSelection + '!';
 
     // Update score
     if (result === 'Win') {
         playerScore++;
+        lastRoundResult.textContent = victoryStatement;
     } else if (result === 'Lose') {
         computerScore++;
+        lastRoundResult.textContent = defeatStatement;
+    } else {
+        lastRoundResult.textContent = tieStatement;
     };
     playerScoreDisplay.textContent = playerScore;
     computerScoreDisplay.textContent = computerScore;
