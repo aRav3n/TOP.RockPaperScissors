@@ -1,7 +1,13 @@
+.buttonContainer {
+    gap: 16px;
+    justify-content: center;
+}
+
 div {
     display: flex;
 }
 
 .scoreCard {
+    align-items: center;
     flex-direction: column;
 }

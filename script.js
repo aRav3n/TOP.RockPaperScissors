@@ -6,7 +6,7 @@ let playerScore = 0;
 const rockButton = document.querySelector('#rock');
 const paperButton = document.querySelector('#paper');
 const scissorsButton = document.querySelector('#scissors');
-const currentScore = document.querySelector('#currentScore');
+const playerScoreDisplay = document.querySelector('#playerScore');
 
 // Get computer choice
 function getComputerChoice () {
@@ -45,7 +45,7 @@ function playOneRound(playerSelection) {
     if (result === 'Win') {
         playerScore++;
     };
-    currentScore.textContent = playerScore;
+    playerScoreDisplay.textContent = playerScore;
 };
 
 // Button clicks trigger a round
