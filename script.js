@@ -1,30 +1,18 @@
 // Initialize variables
-const possibleThrows = ['Rock','Paper','Scissors'];
+const possibleThrows = ['rock','paper','scissors'];
 let playerScore = 0;
 let computerScore = 0;
-let victoryStatement = 'You win! ' + playerSelection + ' beats ' + computerSelection + '!';
-let defeatStatement = 'You lose! ' + computerSelection + ' beats ' + playerSelection + '!';
-let tieStatement = 'Tie! You both threw ' + computerSelection + '!';
+
+// Prep html items for use later
+const rockButton = document.querySelector('#rock');
+const paperButton = document.querySelector('#paper');
+const scissorsButton = document.querySelector('#scissors');
 
 // Get computer choice
 function getComputerChoice () {
     let throwNumber = Math.floor(Math.random() * possibleThrows.length);
     let throwWord = possibleThrows[throwNumber];
     return throwWord;
-};
-
-// Get player choice
-function getPlayerChoice () {
-    let throwWord = prompt('Would you like to throw rock, paper, or scissors?');
-    // Convert player choice to lower case
-    throwWord = throwWord.charAt(0).toUpperCase() + throwWord.slice(1).toLowerCase();
-
-    // Validate player choice
-    if (possibleThrows.includes(throwWord)) {
-        return throwWord;
-    } else {
-        return throwWord + ' is not a legitimate choice. Please try again.';
-    };
 };
 
 // Compare computerThrow vs playerThrow to determine the winner
@@ -34,9 +22,9 @@ function compareThrows (playerSelection, computerSelection) {
         return 'Tie';
     }
     // Evaluate for computer win and update score
-    else if (computerSelection === 'Rock' && playerSelection === 'Scissors' || 
-            computerSelection === 'Paper' && playerSelection === 'Rock' ||
-            computerSelection === 'Scissors' && playerSelection === 'Paper') {
+    else if (computerSelection === 'rock' && playerSelection === 'scissors' || 
+            computerSelection === 'paper' && playerSelection === 'rock' ||
+            computerSelection === 'scissors' && playerSelection === 'paper') {
         return 'Lose';
     }
     // Evaluate for player win and update score
@@ -46,10 +34,13 @@ function compareThrows (playerSelection, computerSelection) {
 };
 
 // Play a round
-function playOneRound () {
+function playOneRound(playerSelection) {
     const computerSelection = getComputerChoice ();
-    const playerSelection = getPlayerChoice ();
     const result = compareThrows (playerSelection, computerSelection);
+    let victoryStatement = 'You win! ' + playerSelection + ' beats ' + computerSelection + '!';
+    let defeatStatement = 'You lose! ' + computerSelection + ' beats ' + playerSelection + '!';
+    let tieStatement = 'Tie! You both threw ' + computerSelection + '!';
+
     // Update score for winner
     if (result === 'Win') {
         playerScore++;
@@ -61,3 +52,8 @@ function playOneRound () {
         return tieStatement;
     };
 };
+
+// Button clicks trigger a round
+rockButton.addEventListener('click', function(){playOneRound('rock')});
+paperButton.addEventListener('click', function(){playOneRound('paper')});
+scissorsButton.addEventListener('click', function(){playOneRound('scissors')});
