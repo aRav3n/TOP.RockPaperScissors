@@ -7,6 +7,10 @@ div {
     display: flex;
 }
 
+.defeat {
+    background-color: red;
+}
+
 .scoreCard {
     align-items: center;
     flex-direction: column;
@@ -15,4 +19,8 @@ div {
 
 .scores {
     justify-content: space-evenly;
+}
+
+.victory {
+    background-color: green;
 }
