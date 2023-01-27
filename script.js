@@ -11,6 +11,7 @@ const playerScoreDisplay = document.querySelector('#playerScore');
 const computerScoreDisplay = document.querySelector('#computerScore');
 const lastRoundResult = document.querySelector('#lastRoundResult');
 const winningScore = 5;
+const body = document.querySelector('body');
 
 function capitalizeFirstLetter (word) {
     let firstChar = word.charAt(0).toUpperCase();
@@ -49,18 +50,26 @@ function compareThrows (playerSelection, computerSelection) {
 // Play a round
 function playOneRound(playerSelection) {
     const computerSelection = getComputerChoice ();
-    const result = compareThrows (playerSelection, computerSelection);
     let victoryStatement = 'Nice! ' + capitalizeFirstLetter(playerSelection) + ' beats ' + computerSelection + '!';
     let defeatStatement = 'Lost that one! ' + capitalizeFirstLetter(computerSelection) + ' beats ' + playerSelection + '!';
     let tieStatement = 'Tie! You both threw ' + computerSelection + '!';
 
-    playerScoreDisplay.textContent = playerScore + ' / ' + winningScore;
-    computerScoreDisplay.textContent = computerScore + ' / ' + winningScore;
+    // If someone has already won reset the game before starting again
+    if (playerScore >= 5 || computerScore >= 5){
+        playerScore = 0;
+        computerScore = 0;
+        body.classList.remove('victory');
+        body.classList.remove('defeat');
+    };
+
+    const result = compareThrows (playerSelection, computerSelection);
 
     if (playerScore >= 5) {
-        lastRoundResult.textContent = 'You won the match! Well done!'
+        lastRoundResult.textContent = 'You won the match! Well done!';
+        body.classList.add('victory');
     } else if (computerScore >= 5) {
-        lastRoundResult.textContent = 'You lost the match! Better luck next time!'
+        lastRoundResult.textContent = 'You lost the match! Better luck next time!';
+        body.classList.add('defeat');
     } else if (result === 'Win') {
         lastRoundResult.textContent = victoryStatement;
     } else if (result === 'Lose') {
@@ -68,6 +77,9 @@ function playOneRound(playerSelection) {
     } else {
         lastRoundResult.textContent = tieStatement;
     };
+
+    playerScoreDisplay.textContent = playerScore + ' / ' + winningScore;
+    computerScoreDisplay.textContent = computerScore + ' / ' + winningScore;
 };
 
 // Button clicks trigger a round
