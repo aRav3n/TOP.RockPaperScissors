@@ -11,6 +11,11 @@ div {
     background-color: red;
 }
 
+#previousRound {
+    align-items: center;
+    flex-direction: column;
+}
+
 .scoreCard {
     align-items: center;
     flex-direction: column;
